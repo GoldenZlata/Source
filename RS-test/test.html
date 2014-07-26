@@ -1,0 +1,201 @@
+<html>
+<head>
+<title> Awesome test </title>
+
+<script type='text/javascript'  src='jquery.js'> </script>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+ <style type="text/css">
+
+
+
+.num {
+
+    width:50px;height:50px
+
+}
+.centered {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    margin-top: -125px; /* 50% высоты */
+    margin-left: -125px;  /* 50% ширины */
+    height: 250px;
+    width: 250px;
+}
+
+
+
+</style>
+
+</head> 
+
+<body>
+<div class = "centered"><form name = matrix>
+
+<input class = "num"  type = "button" id = "a0" onclick = "Action(this.value)" ><input class = "num"  type = "button" id = "a1" onclick = "Action(this.value)" ><input class = "num" type = "button" id = "a2" onclick = "Action(this.value)" ><input class = "num" type = "button" id = "a3" onclick = "Action(this.value)" ><input class = "num" type = "button" id = "a4" onclick = "Action(this.value)" ><br>
+<input class = "num" type = "button" id = "a5" onclick = "Action(this.value)" ><input class = "num" type = "button" id = "a6" onclick = "Action(this.value)" ><input class = "num" type = "button" id = "a7" onclick = "Action(this.value)" ><input class = "num" type = "button" id = "a8" onclick = "Action(this.value)" ><input class = "num" type = "button" id = "a9" onclick = "Action(this.value)" ><br>
+<input class = "num" type = "button" id = "a10" onclick = "Action(this.value)" ><input class = "num" type = "button" id = "a11" onclick = "Action(this.value)" ><input class = "num" type = "button" id = "a12" onclick = "Action(this.value)" ><input class = "num" type = "button" id = "a13" onclick = "Action(this.value)" ><input class = "num" type = "button" id = "a14" onclick = "Action(this.value)" ><br>
+<input class = "num" type = "button" id = "a15" onclick = "Action(this.value)" ><input class = "num" type = "button" id = "a16" onclick = "Action(this.value)" ><input class = "num" type = "button" id = "a17" onclick = "Action(this.value)" ><input class = "num" type = "button" id = "a18" onclick = "Action(this.value)" ><input class = "num" type = "button" id = "a19" onclick = "Action(this.value)" ><br>
+<input class = "num" type = "button" id = "a20" onclick = "Action(this.value)" ><input class = "num" type = "button" id = "a21" onclick = "Action(this.value)" ><input class = "num" type = "button" id = "a22" onclick = "Action(this.value)" ><input class = "num" type = "button" id = "a23" onclick = "Action(this.value)" ><input class = "num" type = "button" id = "a24" onclick = "Action(this.value)" ><br>
+
+</form></div>
+<br><br><br><br><form name = buttonPlace><img src="img/spacer.gif" width=500 height=1 vspace=0 hspace=0 border=0 style=1;visibility:hidden><input type="text" id="send1" value="Current matrix number" disabled="true" /><input name = "mainButton" id = "mainButton" type = "button" value = "Start test" onclick = "Generate()"><br><img src="img/spacer.gif" width=500 height=1 vspace=0 hspace=0 border=0 style=1;visibility:hidden><input type="text" id="send2" value="Current step number" disabled="true" /></form> <br> <br>
+<center> Mute sound <input id= muteFlag type = "radio" onMouseDown="this.status=this.checked;" onClick="this.checked=!this.status;"><img src="img/spacer.gif" width=20 height=1 vspace=0 hspace=0 border=0 style=1;visibility:hidden><input type="button" id = "Autoselect" value="Autoselect" onClick="Autoselect()" disabled="true"> <img src="img/spacer.gif" width=20 height=1 vspace=0 hspace=0 border=0 style=1;visibility:hidden><input type="button" id="Restart" value="Restart" onClick="Restart()" disabled="true"></center>
+
+
+    
+ 
+
+</body>
+
+<script type='text/javascript'>
+
+var a = [];
+var StepNumber = 0;
+var MatrixNumber = 0;
+var k = 1;
+for (i = 0; i < 25; i++)  	a[i] = "";
+
+var buttons = new Array( "a0", "a1", "a2", "a3", "a4", "a5", "a6", "a7", "a8", "a9", "a10", "a11", "a12", "a13", "a14", "a15", "a16", "a17", "a18", "a19", "a20", "a21", "a22", "a23", "a24" );
+
+var b = [];
+for (i = 0; i < 25; i++) b[i] = 0;
+	
+
+ShowNumbers();
+
+function ShowNumbers() {    //отображает числовой массив на кнопки
+	for (i = 0; i < 25; i++)
+	document.getElementById(buttons[i]).value = a[i];
+}
+	
+function Generate() {   //обрабатывает клик на кнопку управления
+	
+	MatrixNumber++;  //переход к новому розыгрышу
+	StepNumber = 0;
+
+	PlaySound("sounds/gen.mp3");	
+	document.getElementById('Restart').disabled = false;
+	document.getElementById('Autoselect').disabled = false;
+
+	if (MatrixNumber > 5 ) {		
+		ShowResult();
+		for (i = 0; i < 25; i++)  a[i] = ""; //очищает матрицу после пяти розыгрышей
+		ShowNumbers();
+		return 0;
+	}
+	document.buttonPlace.mainButton.disabled = true; 
+	//отключает кнопку, пока не разыграна текущая матрица
+	var n = 5, m = 5;		
+
+	a[0] = Math.floor(Math.random() * (m * n)) + 1;
+	b[a[0] - 1] = 0;  //генератор случайной матрицы
+	for(var k = 1; k < m * n; k++)   {                  
+		a[k] = choosePlace(k);
+		b[a[k] - 1] = k;   
+	}                    
+	ShowNumbers();	
+
+	function choosePlace(x) {	
+		a[x] = Math.floor(Math.random() * (m * n)) + 1; 
+		for (i=0; i < x; i++) {
+			if (a[i] == a[x]) choosePlace(x);     
+		}                                               
+		return a[x];
+
+	}
+	
+	if (MatrixNumber == 5) {  
+		document.buttonPlace.mainButton.value = "Show results";		
+	}	
+
+	if((MatrixNumber > 0)&&(MatrixNumber < 5)) document.buttonPlace.mainButton.value = "Go to next matrix"; 
+	document.getElementById('send1').value = "Matrix №" + MatrixNumber;
+	document.getElementById('send2').value = "Step № 1";
+
+	
+}
+function PlaySound(filename) {
+	if (!(document.getElementById('muteFlag').checked)) {
+	var audio = new Audio(); // Создаём новый элемент Audio
+  	audio.src = ''+filename+''; // Указываем путь к звуку "клика"
+  	audio.autoplay = true; // Автоматически запускаем
+  	}
+  	else return 0;
+
+}
+
+function Action(x) {	//обрабатывает клик на определённый номер
+
+	var default_color;
+	var temp = StepNumber;
+	default_color = document.getElementById(buttons[b[temp]]).style.background;
+	
+	
+	if (x == (StepNumber + 1)) {		
+		
+		document.getElementById(buttons[b[temp]]).style.background = "green";		
+		setTimeout(function() {document.getElementById(buttons[b[temp]]).style.background = default_color}, 200);
+		PlaySound("sounds/right.mp3");
+		
+		StepNumber++;
+		if (StepNumber >= 25) {
+			document.buttonPlace.mainButton.disabled = false; //активирует кнопку после перебора всех элементов
+			return 0;
+		}
+		
+		document.getElementById('send2').value = "Step №" + (StepNumber+1);
+	}
+	else {
+		document.getElementById(buttons[b[x-1]]).style.background = "red";
+		setTimeout(function() {document.getElementById(buttons[b[x-1]]).style.background = default_color}, 200);
+		PlaySound("sounds/wrong.mp3");
+  		
+	}
+	
+}
+function Autoselect() {
+
+	document.getElementById('Autoselect').disabled = true;
+	document.getElementById('Restart').disabled = true;
+
+	var j=StepNumber;
+	
+	var play = setInterval(function() {j++;	document.getElementById(buttons[b[StepNumber]]).click(); if (j >= 25) {clearInterval(play); document.getElementById('Restart').disabled = false;}}, 200);	
+
+
+	
+}
+function ShowResult() {
+
+}
+function Restart() {
+	StepNumber = 0;
+	MatrixNumber = 0;
+	for (i = 0; i < 25; i++)  	a[i] = "";
+	ShowNumbers();
+	document.buttonPlace.mainButton.disabled = false;	
+	document.getElementById('Restart').disabled = true;
+	document.getElementById('Autoselect').disabled = true;
+	document.buttonPlace.mainButton.value = "Start test";
+	document.getElementById('send1').value = "Current matrix number";
+	document.getElementById('send2').value = "Current step number";
+
+}
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</html>

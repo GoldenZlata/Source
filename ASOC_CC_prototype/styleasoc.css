@@ -1,0 +1,73 @@
+@import url(http://fonts.googleapis.com/css?family=Roboto);
+#page{
+width: 100%;
+height: 600px;
+margin: 0 auto;
+background-image: url(backgroundImage.jpg);
+background-size: 100%;
+}
+#activePage{
+box-sizing: border-box;
+margin-left: 15%;
+margin-top: 14%;
+margin-bottom: 14%;
+width: 70%;
+height: 72%;
+border-radius: 20px;
+background-color: #e9e9e9;
+font-family: 'Roboto', sans-serif;
+border-color: transparent;
+font-size: 100%;
+text-align: center;
+}
+.mainText{
+height: 70%;
+font-size: 200%;
+text-align: center;
+color: #343631;
+}
+.button{
+box-sizing: border-box;
+width: 28%;
+height: 14%;
+margin: 0 auto;
+background-color: #059d46;
+border-radius: 0.5em;
+text-align: center;
+font-size: 200%;
+color: #e9e9e9;
+}
+#startWorksButton{
+box-sizing: border-box;
+width: 49.9%;
+height: 30%;
+float: left;
+background-color: #059d46;
+padding-top: 1%;
+text-align: center;
+font-size: 200%;
+border-bottom-left-radius: 0.5em;
+color: #e9e9e9;
+}
+#repairWorksButton{
+box-sizing: border-box;
+width: 49.9%;
+height: 30%;
+float: right;
+background-color: #059d46;
+padding-top: 1%;
+text-align: center;
+font-size: 200%;
+border-bottom-right-radius: 0.5em;
+color: #e9e9e9;
+}
+.entryField{
+text-align: center;
+border-radius: 0.5em;
+}
+.titleText{
+text-align: center;
+}
+.checkStayLoggedIn{
+text-align: center;
+}

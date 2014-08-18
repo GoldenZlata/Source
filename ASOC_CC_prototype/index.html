@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Automatic service operations center</title>
+        <link rel="stylesheet" href="styleasoc.css">
+        <script type="text/javascript" src="js/jquery.js"></script>
+        <script type="text/javascript" src="js/underscore.js"></script>
+        <script type="text/javascript" src="js/backbone.js"></script>
+        <script type="text/javascript" src="js/index.js"></script>
+    </head>
+<body id = 'page'>
+    <div id="activePage">
+        <!-- при выболнении html без js у нас "отобразится" лишь этот пустой блок, т.к. остальной код разбит по шаблонам -->
+        <!-- js код же будет проецировать представление в этот пустой блок, помещая в него один из шаблонов -->
+        <div id="block" class="block">
+        </div>
+
+        <!-- Блок начала -->
+        <script type="text/template" id="start"> 
+        <div class="start"> 
+            <div class="pageWorksChoice" >
+                    <div class="mainText">Выберите тип работ:</div>
+                    <br>
+                    <div id="startWorksButton"><a >Пуско-наладочные работы</a></div>
+                    <div id="repairWorksButton"><a >Ремонт</a></div>
+            </div>
+        </div>    
+        </script>
+
+        <!-- Блок ремонта -->
+        <script type="text/template" id="repair">
+            <div class="repair">
+                <div class="pageSn" >
+                    <div class="mainText">Введите серийный номер:</div>
+                    <br>
+                    <div class="entryField"><input type="text"></div>
+                    <br>
+                    <div id='repair_ok' class="button"><a >OK</a></div>
+                    <br>
+                    <a href="#!/">Назад</a>
+                </div>                
+            </div>
+        </script>
+
+        <!-- Блок ПНР -->
+        <script type="text/template" id="pnr">
+            <div class="pnr">
+                <div class="pageSo">
+                    <div class="mainText">Введите номер заказа(SO):</div>
+                    <br>
+                    <div class="entryField"><input type="text"></div>
+                    <br>
+                    <div id='pnr_ok' class="button"><a >OK</a></div>
+                    <br>
+                    <a href="#!/">Назад</a>
+                </div>                
+            </div>        
+        </script>
+
+        <!-- Авторизация -->
+        <script type="text/template" id='auth_main'>
+            <div class="pageChooseFromList" >
+                <div class="titleText">Авторизация пользователя</div>
+                <div class="mainText">Выберите из списка ваш номер телефона:</div>
+                <br>
+                <div class="phoneList">
+                    <select single size="5">
+                    <option>+8905*****30</option>
+                    <option>+8905*****30</option>
+                    <option>+8905*****30</option>
+                    <option>+8905*****30</option>
+                    <option>+8905*****30</option>
+                    </select>
+                </div>
+                <br>
+            
+                <div id=auth_ok class="button"><a >OK</a></div>
+                <br>
+                
+                <div class="link"><a href="">Авторизоваться по e-mail</a></div>
+                
+                <div class="link"><a href="">Здесь нет моего номера телефона</a></div>
+                <a href="#!/">В начало</a>
+            </div>
+        </script>
+        
+        <script type="text/template" id='auth_confirm'>
+            <div class="pageCodeInput">
+                <div class="titleText">Авторизация пользователя</div>
+                <div class="mainText">На ваш номер выслан уникальный код. Введите его в поле:</div>
+                <br>
+                <div class="entryField"><input type="text"></div>
+                <br>
+                <div class="checkStayLoggedIn"><input type="checkbox">Оставаться в системе</div>
+                <div id='confirm_ok' class="button"><a >OK</a></div>
+                <a href="#!/">В начало</a>
+            </div>
+
+        </script>
+    </div>
+</body>
+</html>

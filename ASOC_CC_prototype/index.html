@@ -2,6 +2,7 @@
 <html>
     <head>
         <meta charset="utf-8">
+        <meta name="viewport">
         <title>Automatic service operations center</title>
         <link rel="stylesheet" href="styleasoc.css">
         <script type="text/javascript" src="js/jquery.js"></script>
@@ -19,11 +20,11 @@
         <!-- Блок начала -->
         <script type="text/template" id="start"> 
         <div class="start"> 
-            <div class="pageWorksChoice" >
-                    <div class="mainText">Выберите тип работ:</div>
+            <div class="pageAuthorization" >
+                    <div class="mainTextFirstPage">Выберите тип работ:</div>
                     <br>
-                    <div id="startWorksButton"><a >Пуско-наладочные работы</a></div>
-                    <div id="repairWorksButton"><a >Ремонт</a></div>
+                    <div id="startWorksButton">Пуско-наладочные работы</div>
+                    <div id="repairWorksButton">Ремонт</div>
             </div>
         </div>    
         </script>
@@ -31,12 +32,12 @@
         <!-- Блок ремонта -->
         <script type="text/template" id="repair">
             <div class="repair">
-                <div class="pageSn" >
+                <div class="pageAuthorization" >
                     <div class="mainText">Введите серийный номер:</div>
                     <br>
-                    <div class="entryField"><input type="text"></div>
+                    <div class="entryFieldDiv"><input class="entryFieldInput" type="text"></div>
                     <br>
-                    <div id='repair_ok' class="button"><a >OK</a></div>
+                    <div id='repair_ok' class="button">OK</div>
                     <br>
                     <a href="#!/">Назад</a>
                 </div>                
@@ -46,12 +47,12 @@
         <!-- Блок ПНР -->
         <script type="text/template" id="pnr">
             <div class="pnr">
-                <div class="pageSo">
+                <div class="pageAuthorization">
                     <div class="mainText">Введите номер заказа(SO):</div>
                     <br>
-                    <div class="entryField"><input type="text"></div>
+                    <div class="entryFieldDiv"><input class="entryFieldInput" type="text"></div>
                     <br>
-                    <div id='pnr_ok' class="button"><a >OK</a></div>
+                    <div id='pnr_ok' class="button">OK</div>
                     <br>
                     <a href="#!/">Назад</a>
                 </div>                
@@ -60,12 +61,12 @@
 
         <!-- Авторизация -->
         <script type="text/template" id='auth_main'>
-            <div class="pageChooseFromList" >
+            <div class="pageAuthorization" >
                 <div class="titleText">Авторизация пользователя</div>
-                <div class="mainText">Выберите из списка ваш номер телефона:</div>
+                <div class="mainTextWhenTitleLeft">Выберите из списка ваш номер телефона:</div>
                 <br>
-                <div class="phoneList">
-                    <select single size="5">
+                <div class="phoneListDiv">
+                    <select single size="5" class="phoneListSelect">
                     <option>+8905*****30</option>
                     <option>+8905*****30</option>
                     <option>+8905*****30</option>
@@ -75,7 +76,7 @@
                 </div>
                 <br>
             
-                <div id=auth_ok class="button"><a >OK</a></div>
+                <div id=auth_ok class="button">OK</div>
                 <br>
                 
                 <div class="link"><a href="">Авторизоваться по e-mail</a></div>
@@ -86,14 +87,14 @@
         </script>
         
         <script type="text/template" id='auth_confirm'>
-            <div class="pageCodeInput">
+            <div class="pageAuthorization">
                 <div class="titleText">Авторизация пользователя</div>
-                <div class="mainText">На ваш номер выслан уникальный код. Введите его в поле:</div>
+                <div class="mainTextWhenTitle">На ваш номер выслан уникальный код. Введите его в поле:</div>
                 <br>
-                <div class="entryField"><input type="text"></div>
+                <div class="entryFieldDiv"><input class="entryFieldInput" type="text"></div>
                 <br>
-                <div class="checkStayLoggedIn"><input type="checkbox">Оставаться в системе</div>
-                <div id='confirm_ok' class="button"><a >OK</a></div>
+                <div class="checkStayLoggedInDiv"><input type="checkbox">Оставаться в системе</div>
+                <div id='confirm_ok' class="button">OK</div>
                 <a href="#!/">В начало</a>
             </div>
 
